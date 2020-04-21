@@ -1,0 +1,60 @@
+{
+  "name": "songs-prediction",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.10",
+    "@material-ui/lab": "^4.0.0-alpha.49",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/react-transition-group": "^4.2.4",
+    "bootstrap": "^4.4.1",
+    "faker": "^4.1.0",
+    "json-server": "^0.16.1",
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.15",
+    "material-table": "^1.57.2",
+    "material-ui": "^0.20.2",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
+    "react-dom": "^16.13.1",
+    "react-landing-page": "^2.0.2",
+    "react-loader-spinner": "^3.1.14",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-select-search": "^1.0.2",
+    "react-spinners": "^0.8.1",
+    "react-transition-group": "^4.3.0",
+    "semantic-ui-react": "^0.88.2",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}

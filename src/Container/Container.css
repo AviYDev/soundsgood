@@ -1,0 +1,78 @@
+.TopList-enter{
+    opacity: 0.01;
+}
+
+.TopList-enter.TopList-enter-active{
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.TopList-leave{
+    opacity: 0.01;
+}
+
+.TopList-leave.TopList-leave-active{
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+
+.Table{
+    width: 50%;
+    font-family: 'PT Sans', sans-serif;
+    margin: auto;
+}
+.MuiTableCell-body{
+    color : white!important;
+}
+.MuiCheckbox-colorSecondary.Mui-checked {
+    color: #f50057!important;
+}
+.MuiCheckbox-root{
+    color: #cbcbcb!important;
+}
+button:hover{
+    cursor: pointer;
+    border: 1px solid #d7d7d7;
+}
+
+
+button{
+    border: 1px solid #797979;
+    margin-top: 10px;
+    box-shadow: 0px 1px 7px 0px black;
+}
+.elem:hover{
+    cursor: pointer;
+    border: 1px solid #000000;
+    background-color: #000000;
+}
+.elem {
+    border: 1px solid #2f2f2f;
+    background-color: #2b2b2b;
+    margin-top: 10px;
+    box-shadow: 0px 1px 7px 0px black;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sweet-loading{
+    margin-top: 20%;
+    display: inline-table;
+}
+
+.pagefade-enter, .pagefade-appear { opacity:0; }
+.pagefade-enter.pagefade-enter-active,
+.pagefade-appear.pagefade-appear-active { opacity:1; transition:opacity 1000ms; }
+.pagefade-enter.pagefade-enter-active { transition-delay:1000ms; }
+.pagefade-exit { opacity:1; }
+.pagefade-exit.pagefade-exit-active { opacity:0; transition:opacity 1000ms; }
+
+
+.scale-in-center {
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.puff-in-center{animation:puff-in-center .5s cubic-bezier(.215,.61,.355,1.000) both}
+.fade-in{animation:fade-in 1.5s cubic-bezier(.39,.575,.565,1.000) both}
+@keyframes scale-in-center{0%{transform:scale(0);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes puff-in-center{0%{transform:scale(2);filter:blur(4px);opacity:0}100%{transform:scale(1);filter:blur(0);opacity:1}}
+@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
