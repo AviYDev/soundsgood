@@ -48,7 +48,8 @@
   background: rgba(0,0,0,0.5);
   color: white;
   border-radius: 250px;
-  width: 18%;
+  font-size: 12px;
+  width: 6%;
   margin-left: auto;
   margin-right: auto;
   position: sticky;
@@ -59,7 +60,33 @@
 }
 .landing-button:hover{
   transition-duration: 0.5s;
-  width: 19%;
+  width: 8%;
+  font-weight: 700;
+  font-style: normal;
+
+  box-shadow: black 0px 0px 15px 5px;
+}
+
+
+
+.exec-button{
+  transition-duration: 0.5s;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border-radius: 250px;
+  font-size: 12px;
+  width: 12%;
+  margin-left: auto;
+  margin-right: auto;
+  position: sticky;
+  font-weight: 700;
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+  top: 45%;
+}
+.exec-button:hover{
+  transition-duration: 0.5s;
+  width: 14%;
   font-weight: 700;
   font-style: normal;
 

@@ -9,12 +9,13 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-
 import TableRow from '@material-ui/core/TableRow';
-
 import Checkbox from '@material-ui/core/Checkbox';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import ScaleLoader from "react-spinners/ScaleLoader";
+import "./Ranking.css";
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 import { css } from "@emotion/core";
 
 
@@ -26,12 +27,16 @@ class Container extends Component {
         super(props);
         this.state = {
             songs: [],
+            result: [],
             valid : false,
             load : false,
+            load2 : false,
+            loader : false,
             selected: "",
             column:[],
             data:[],
             toDisplay:[],
+            visible: false
         }
         this.validate = this.validate.bind(this);
 
@@ -39,10 +44,37 @@ class Container extends Component {
 
     componentDidMount() {
             this.getSongs();
+            this.setState({result: {"cross_val":{"gaussian":-242.67,"knn":65.79,"logistique_reg":65.86,"tree":58.31},"result":{"gaussian":-2.62,"knn":60.89,"logistique_reg":58.91,"tree":57.43},"train":{"gaussian":6.65,"knn":73.72,"logistique_reg":65.73,"tree":87.93}}})
+           // this.getResult();
     }
 
+    show() {
+        this.setState({ loader: true});
+        this.getResult();
+    }
 
+    hide() {
+        this.setState({ visible: false });
+    }
 
+    getResult(){
+        fetch('http://065c35c5.ngrok.io/result',{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+                this.setState({result : data});
+                this.setState({ loader: false });
+                this.setState({ load2: true });
+                this.setState({ visible: true });
+            })
+
+    }
 
     getSongs(){
         fetch('http://localhost:3002/spotify/',{
@@ -98,6 +130,9 @@ class Container extends Component {
   border-color: red;
 `;
         const isLoad =  this.state.load;
+        const isLoad2 =  this.state.load2;
+        const loader =  this.state.loader;
+        const result = this.state.result;
             if (this.state.valid) {
                 return (<Ranking songs={this.state.songs}/>);
             } else {
@@ -110,23 +145,16 @@ class Container extends Component {
                             { isLoad ?
                                 <div className={"Table"}>
                                 <div className={"fade-in"}>
-                                    Song search
-                                <TableContainer >
+                                    Song Dataset
+                                <TableContainer>
                                     <Table >
 
                                         <TableBody>
                                             {this.state.toDisplay.map((row) => (
                                                 <TableRow     hover
-
-                                                              role="checkbox"
                                                               tabIndex={-1}
                                                               key={row.id}
-                                                        ><TableCell padding="checkbox">
-                                                    <Checkbox
-                                                        value={row.id}
-                                                        inputProps={{ 'aria-label': row.song_title }}
-                                                    />
-                                                </TableCell>
+                                                        >
                                                     <TableCell  component="th" scope="row">
                                                         {row.song_title}
                                                     </TableCell>
@@ -138,18 +166,61 @@ class Container extends Component {
                                 </TableContainer>
 
 
-                                    <button className={'landing-button'} onClick={this.validate}>
-                                       Validate
-                                    </button>
+
+
+                                    { loader ?
+                                        <div className="sweet-loading2">
+                                            <ScaleLoader
+                                                css={override}
+                                                size={300}
+                                                color={"#ffffff"}
+                                                loading={this.state.loading}
+                                            />
+                                        </div>
+                                        :
+<div>
+    <button className={'exec-button'} onClick={this.show.bind(this)}>
+        Validate
+    </button>
+    { isLoad2 ?
+                                        <Rodal className={"rodal"} visible={this.state.visible}
+                                               onClose={this.hide.bind(this)}>
+                                            <div className={"content"}>
+                                                <div className={"result"}><p>Training Test</p>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <p>KNN : {result.train.knn}</p>
+                                                    <p>Logistique Regression : {result.train.logistique_reg}</p>
+                                                    <p>Decision Tree : {result.train.tree}</p>
+                                                </div>
+                                                <div className={"result"}><p>Cross Validation Test</p>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+
+                                                    <p>KNN : {result.cross_val.knn}</p>
+                                                    <p>Logistique Regression : {result.cross_val.logistique_reg}</p>
+                                                    <p>Decision Tree : {result.cross_val.tree}</p>
+                                                </div>
+
+                                                <div className={"result"}><p>Result test</p>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <p>KNN : {result.result.knn}</p>
+                                                    <p>Logistique Regression : {result.result.logistique_reg}</p>
+                                                    <p>Decision Tree : {result.result.tree}</p>
+                                                </div>
+                                            </div>
+
+                                        </Rodal>  :  <div> </div>}
+</div>
+                                    }
+
                                 </div>
                                 </div>
 
-                       //             <MaterialTable
-                         //               title="Editable Example"
-                           //             columns={this.state.column}
-                             //           data={this.state.data}
-
-                               //     />
                                 :
                                 <div className="sweet-loading">
                                     <ScaleLoader
@@ -169,12 +240,6 @@ class Container extends Component {
 
 }
 
-/*   <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                        <Button variant="outline-warning">Search</Button>*/
 
 export default Container;
 
-
-/*      <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                    </header>*/

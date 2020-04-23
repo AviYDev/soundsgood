@@ -2,6 +2,9 @@ import React, {
     Component,
 } from 'react';
 import "./Container.css";
+import "./Ranking.css";
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 
@@ -11,14 +14,14 @@ class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            songs: this.props.songs,
+            result: "",
+            visible: false
         }
-        this.handleAdd= this.handleAdd.bind(this);
 
     }
 
     componentDidMount() {
-           // this.getSongs();
+        //    this.getSongs();
     }
 
     handleRemove(i) {
@@ -27,22 +30,19 @@ class Container extends Component {
         this.setState({songs: newItems});
     }
 
-    handleAdd() {
-        let newItems = this.state.songs;
 
 
-        newItems.push({
-            "title": "Title",
-            "artist": "artiste",
-            "order": "0"
-        })
+show() {
+ this.getResult();
+}
+
+hide() {
+    this.setState({ visible: false });
+}
 
 
-        this.setState({songs: newItems});
-    }
-
-    getSongs(){
-        fetch('http://localhost:3001/spotify/',{
+    getResult(){
+        fetch('http://5486f8f8.ngrok.io/result',{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -51,8 +51,9 @@ class Container extends Component {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data.songs)
-                this.setState({songs : data.songs});
+                console.log(data)
+                this.setState({result : data});
+                this.setState({ visible: true });
             })
 
     }
@@ -61,29 +62,34 @@ class Container extends Component {
 
 
 
-        const items = this.state.songs.map((item, i) => (
+/*        const items = this.state.songs.map((item, i) => (
             <CSSTransition appear timeout={{appear:500,enter:200,exit:1000}} classNames="pagefade" key={i}>
             <div  className={"elem"} key={item.order}  onClick={() => this.handleRemove(i)}>
                 {item.song_title} by {item.artist}
             </div>
     </CSSTransition>
             // return container;
-        ));
-      //  console.log(this.state.songs);
+        ));*/
+      //  console.log(this.state.songs);{items}
         return(
 
-
             <div>
-
-                <button onClick={this.handleAdd}>Add Song</button>
-        <TransitionGroup
+                <button onClick={this.show.bind(this)}>show</button>
 
 
-        transition={"TopList"}>
-            {items}
-        </TransitionGroup>
+                <Rodal className={"rodal"} visible={this.state.visible} onClose={this.hide.bind(this)}>
+                    <div className={"content"}>
+                        <div className={"result"}><p>Training Test</p></div>
+
+                        <div className={"result"}><p>Cross Validation Test</p></div>
+
+
+                        <div className={"result"}><p>Result test</p></div>
+
+                    </div>
+                </Rodal>
             </div>
-    );
+       );
     }
 }
 

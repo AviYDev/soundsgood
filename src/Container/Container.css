@@ -9,13 +9,17 @@
 .TopList-leave{
     opacity: 0.01;
 }
-
+.logo{
+    width: 30%;
+    opacity: 0.82;
+}
 .TopList-leave.TopList-leave-active{
     opacity: 1;
     transition: opacity 300ms ease-in;
 }
-
-
+.MuiTableContainer-root{
+    height: 600px;
+}
 .Table{
     width: 50%;
     font-family: 'PT Sans', sans-serif;
@@ -57,6 +61,11 @@ button{
 }
 .sweet-loading{
     margin-top: 20%;
+    margin-left: -3%;
+    display: inline-table;
+}
+.sweet-loading2{
+    margin-left: -5%;
     display: inline-table;
 }
 
