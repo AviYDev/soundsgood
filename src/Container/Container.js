@@ -10,7 +10,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import ScaleLoader from "react-spinners/ScaleLoader";
 import "./Ranking.css";
@@ -36,7 +35,8 @@ class Container extends Component {
             column:[],
             data:[],
             toDisplay:[],
-            visible: false
+            visible: false,
+            visible2: false
         }
         this.validate = this.validate.bind(this);
 
@@ -57,8 +57,16 @@ class Container extends Component {
         this.setState({ visible: false });
     }
 
+    show2() {
+        this.setState({  visible2: true});
+    }
+
+    hide2() {
+        this.setState({ visible2: false });
+    }
+
     getResult(){
-        fetch('http://065c35c5.ngrok.io/result',{
+        fetch('http://60d76c39.ngrok.io/result',{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -187,15 +195,13 @@ class Container extends Component {
                                                onClose={this.hide.bind(this)}>
                                             <div className={"content"}>
                                                 <div className={"result"}><p>Training Test</p>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
+                                                    <br/><br/>
+
                                                     <p>KNN : {result.train.knn}</p>
                                                     <p>Logistique Regression : {result.train.logistique_reg}</p>
                                                     <p>Decision Tree : {result.train.tree}</p>
                                                 </div>
                                                 <div className={"result"}><p>Cross Validation Test</p>
-                                                    <br/>
                                                     <br/>
                                                     <br/>
 
@@ -205,15 +211,23 @@ class Container extends Component {
                                                 </div>
 
                                                 <div className={"result"}><p>Result test</p>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
+                                                    <br/><br/>
+
                                                     <p>KNN : {result.result.knn}</p>
                                                     <p>Logistique Regression : {result.result.logistique_reg}</p>
                                                     <p>Decision Tree : {result.result.tree}</p>
-                                                </div>
-                                            </div>
 
+
+
+                                                </div><Rodal className={"rodal"} visible={this.state.visible2}
+                                                             onClose={this.hide2.bind(this)}>
+                                                <img style={{width:'45%'}} alt="HeatMap" src="https://drive.google.com/uc?export=view&id=1fCLzxpiM8vIO04yzSX14Lul1nZubBZe9"></img>
+                                                <img style={{width:'45%'}} alt="Correlation" src="https://drive.google.com/uc?export=view&id=1-00COcjbxMK93ELVPM3bneuW6uL_Gd6I"></img>
+                                              </Rodal>
+                                            </div>
+                                            <button style={{marginTop:"10%"}}className={'exec-button'} onClick={this.show2.bind(this)}>
+                                                More infos
+                                            </button>
                                         </Rodal>  :  <div> </div>}
 </div>
                                     }
