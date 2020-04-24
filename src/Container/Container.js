@@ -66,7 +66,7 @@ class Container extends Component {
     }
 
     getResult(){
-        fetch('http://60d76c39.ngrok.io/result',{
+        fetch('http://a23071bd.ngrok.io/result',{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -81,11 +81,14 @@ class Container extends Component {
                 this.setState({ load2: true });
                 this.setState({ visible: true });
             })
-
     }
 
     getSongs(){
-        fetch('http://localhost:3002/spotify/',{
+        this.setState({songs : csvjson.spotify});
+        this.setState({toDisplay : csvjson.spotify});
+        this.setState({load: true});
+
+    /*    fetch('http://localhost:3002/spotify/',{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -97,32 +100,9 @@ class Container extends Component {
                 data = csvjson.spotify;
                 this.setState({songs : data});
                 this.setState({toDisplay : data});
-
-
-
                 console.log(this.state.column);
-
-
                 this.setState({load: true});
-               /* for (const property in this.state.songs ) {
-                    let newItems = this.state.data;
-
-                    newItems.push({
-                        id : property.id,
-                        title: property.song_title,
-                        artist: property.artist,
-
-                    })
-
-                    //console.log(newItems);
-                    this.setState({data: newItems});
-
-                }*/
-
-
-
-
-                })
+                })*/
 
     }
 
