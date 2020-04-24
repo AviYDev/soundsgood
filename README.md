@@ -14,7 +14,7 @@ ECE Machine learning project
 
 ### DATASET 
 
-- In the notebook folder you will have to load data.csv.
+- In the notebook folder you will have to load data.csv (From spotify API).
 
 - This notebook use flask to run a server that will be used by the front application.
 
@@ -29,11 +29,11 @@ ECE Machine learning project
    npm start   
    ````
    Data figure image are from googleDrive
-### Vidéo
+### VIDEO
 
 https://youtu.be/O9HY3VFywlw
 
-### Authors
+### AUTHORS
 
 - Issam Tebib
 - Iman El Azhari
