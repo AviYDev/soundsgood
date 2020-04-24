@@ -14,10 +14,11 @@ ECE Machine learning project
 
 ### DATASET 
 
-In the notebook folder you will have to load data.csv.
+- In the notebook folder you will have to load data.csv.
 
-This notebook use flask to run a server that will be used by the front application.
-( !!!!! URL ngrok to replace in the front code each time you run the notebook !!!!!)
+- This notebook use flask to run a server that will be used by the front application.
+
+- !!!!! URL ngrok to replace in the front code each time you run the notebook !!!!!
 
 ### APPLICATION
    - Run the notebook
